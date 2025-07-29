@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>BRACU Routine</title>
+  <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAABP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAQAAAAABEAABEAAAABEAAAARAAABEAEAAAEQABEAARAAABEBEAAAEQAAARARAAABEAARAAEQAAAQARAAABEAAAARAAAAARAAARAAAAAAEAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1f2937">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "s2qmrse3e1");
+  </script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #1f2937;
+      color: #f9fafb;
+      padding-bottom: 2rem;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    header {
+      background: linear-gradient(135deg, #2d3748, #1a202c);
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+    header p {
+      font-size: 1rem;
+    }
+    .cta-box {
+      background-color: #2d3748;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      margin-bottom: 2rem;
+    }
+    .cta-btn {
+      background: linear-gradient(to right, #8b5cf6, #6366f1);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      font-size: 1.2rem;
+      border-radius: 9999px;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .cta-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 8px rgba(0,0,0,0.5);
+    }
+    .flex-container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .toggle-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-left: auto;
+    }
+    #toggle-label {
+      display: inline-block;
+      width: 3rem;
+      text-align: center;
+      font-size: 0.875rem;
+    }
+    .inline-toggle {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    .inline-toggle input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .toggle-bg {
+      width: 2.75rem;
+      height: 1.5rem;
+      background-color: #d1d5db;
+      border-radius: 9999px;
+      transition: background-color 0.3s ease;
+    }
+    .inline-toggle input:checked + .toggle-bg {
+      background-color: #3b82f6; 
+    }
+    .toggle-dot {
+      position: absolute;
+      top: 0.125rem;
+      left: 0.125rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      background-color: white;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+    }
+    .inline-toggle input:checked + .toggle-bg .toggle-dot {
+      transform: translateX(1.25rem);
+    }
+    .search-container {
+      position: relative;
+      flex: 1;
+      margin-right: 1rem;
+    }
+    .search-container input {
+      width: 100%;
+      padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+      border: 1px solid #4a5568;
+      border-radius: 0.375rem;
+      background-color: #2d3748;
+      color: #f9fafb;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .search-container input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.3);
+    }
+    .search-container .fa-search {
+      position: absolute;
+      top: 50%;
+      right: 0.75rem;
+      transform: translateY(-50%);
+      color: #cbd5e0;
+    }
+    .courses-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 1024px) {
+      .courses-grid {
+        grid-template-columns: 1fr auto 1fr 1fr;
+      }
+    }
+    .courses-box {
+      background-color: #2d3748;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+    .buttons-col {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
+    @media (min-width: 1024px) {
+      .buttons-col {
+        flex-direction: column;
+      }
+    }
+    .buttons-col button {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: background-color 0.3s ease;
+    }
+    .buttons-col button:hover {
+      filter: brightness(110%);
+    }
+    #selected-courses {
+      background-color: #374151;
+      border-radius: 0.375rem;
+      padding: 0.5rem;
+      overflow-y: auto;
+      height: 12rem;
+    }
+    .selected-course-item {
+      background-color: #4b5563;
+      padding: 0.5rem;
+      border-radius: 0.375rem;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .selected-course-item:hover {
+      background-color: #6b7280;
+      transform: scale(1.02);
+    }
+    .selected-course-item.active-selected {
+      outline: 2px solid #ff9900;
+    }
+    .info-box {
+      background-color: #2d3748;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      min-height: 6rem;
+    }
+    #schedule-container {
+      overflow-x: auto;
+      margin-top: 2rem;
+      background-color: #1f2937;
+      transition: all 0.3s ease;
+    }
+    #schedule-table th,
+    #schedule-table td {
+      min-width: 80px;
+      padding: 0.5rem;
+      border: 1px solid #4a5568;
+      text-align: center;
+      color: #f9fafb;
+    }
+    details.acknowledgements {
+      max-width: 400px;
+      margin: 2rem auto 0;
+      background-color: #2d3748;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+    details.acknowledgements summary {
+      list-style: none;
+      cursor: pointer;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    details.acknowledgements summary::-webkit-details-marker {
+      display: none;
+    }
+    footer {
+      background: #1a202c;
+      box-shadow: 0 -2px 6px rgba(0,0,0,0.3);
+      padding: 1rem 0;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    footer a:hover {
+      color: #a0aec0;
+    } 
+    #toastContainer {
+      z-index: 1000;
+    }
+    .browser-warning-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    }
+
+    .browser-warning-content {
+      background-color: #2d3748;
+      border-radius: 0.75rem;
+      padding: 2rem;
+      margin: 1rem;
+      max-width: 400px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .browser-warning-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: #9ca3af;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .browser-warning-close:hover {
+      color: #f9fafb;
+    }
+
+    .browser-warning-title {
+      color: #f59e0b;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .browser-warning-text {
+      color: #f9fafb;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .browser-warning-link {
+      background-color: #374151;
+      border: 1px solid #4b5563;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      margin: 1rem 0;
+      font-family: monospace;
+      color: #10b981;
+      font-size: 0.9rem;
+      word-break: break-all;
+      user-select: all;
+    }
+
+    .browser-warning-buttons {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .browser-warning-btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .browser-warning-btn-primary {
+      background-color: #3b82f6;
+      color: white;
+    }
+
+    .browser-warning-btn-primary:hover {
+      background-color: #2563eb;
+    }
+
+    .browser-warning-btn-secondary {
+      background-color: #6b7280;
+      color: white;
+    }
+
+    .browser-warning-btn-secondary:hover {
+      background-color: #4b5563;
+    }
+
+    @media (max-width: 640px) {
+      .browser-warning-content {
+        margin: 0.5rem;
+        padding: 1.5rem;
+      }
+
+      .browser-warning-buttons {
+        flex-direction: column;
+      }
+
+      .browser-warning-btn {
+        width: 100%;
+      }
+    }
+    @keyframes sparkEffect {
+      0% { text-shadow: 0 0 2px rgba(255,255,255,0.2); }
+      50% { text-shadow: 0 0 10px rgba(255,255,255,0.8); }
+      100% { text-shadow: 0 0 2px rgba(255,255,255,0.2); }
+    }
+    @keyframes ping {
+      0% { transform: scale(1); opacity: 1; }
+      75%, 100% { transform: scale(2); opacity: 0; }
+    } 
+    @media (max-width: 640px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .cta-btn {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+      } 
+      .mobile-buttons {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 0.25rem !important;
+        justify-content: center !important;
+        overflow-x: visible !important;
+        padding: 0 !important;
+      }
+      .mobile-buttons button {
+        font-size: 0.65rem !important;
+        padding: 0.4rem 0.6rem !important;
+        white-space: nowrap !important;
+        flex: 0 0 auto !important;
+        max-width: calc(50% - 0.125rem) !important;
+      }
+      .mobile-buttons button i {
+        font-size: 0.75rem !important;
+        margin-right: 0.2rem !important;
+      }
+      .mobile-buttons button:nth-child(3) {
+        flex: 0 0 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-top: 0.25rem !important;
+      }
+    }
+    @media (max-width: 768px) {
+      #schedule-table {
+        font-size: 0.75rem;
+      }
+
+      #schedule-table th,
+      #schedule-table td {
+        min-width: 60px;
+        padding: 0.25rem;
+      }
+
+      #schedule-container {
+        margin: 1rem -1rem;
+        border-radius: 0;
+      }
+
+      .courses-box .p-2 {
+        padding: 0.5rem;
+      }
+
+      .font-semibold {
+        font-size: 0.7rem;
+      }
+
+      .text-gray-300 {
+        font-size: 0.65rem;
+      }
+    }
+    #schedule-container {
+      background-color: #1f2937;
+      transition: all 0.3s ease;
+    }
+
+    #schedule-table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    #schedule-table th,
+    #schedule-table td {
+      border: 1px solid #4a5568;
+      background-color: #2d3748;
+    }
+
+    .screenshot-preparation {
+      position: relative;
+      z-index: 1000;
+      background-color: #1f2937 !important;
+    }
+    .screenshot-preparation {
+      position: relative !important;
+      z-index: 1000 !important;
+      background-color: #1f2937 !important;
+      overflow: visible !important;
+      transform: none !important;
+    }
+
+    #schedule-table.screenshot-preparation {
+      border-collapse: collapse !important;
+      border-spacing: 0 !important;
+      width: 100% !important;
+    }
+
+    #schedule-table.screenshot-preparation th,
+    #schedule-table.screenshot-preparation td {
+      background-color: #2d3748 !important;
+      color: #f9fafb !important;
+      border: 1px solid #4a5568 !important;
+      padding: 0.75rem !important;
+      font-size: 14px !important;
+    }
+
+    .screenshot-preparation .courses-box {
+      background-color: #2d3748 !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="container auto">
+    <div>
+      <button id="copy-routine-main"></button>
+    </div>
+    <div class="flex-container">
+      <div class="search-container hidden lg:block">
+        <input type="text" id="search-input" placeholder="Search">
+        <i class="fas fa-search"></i>
+      </div>
+      <div class="toggle-wrapper ml-auto">
+      </div>
+    </div>
+    <div class="courses-grid">
+      <div class="courses-box hidden lg:block">
+        <h3 class="font-bold text-sm mb-2 text-center">Available Courses</h3>
+        <select id="available-courses" multiple class="w-full h-48 bg-gray-700 rounded p-2 text-sm focus:outline-none"></select>
+      </div>
+      <div class="buttons-col hidden lg:flex">
+        <button id="add-course" class="hover:bg-green-900 text-white">
+          <i class="fas fa-plus"></i>
+        </button>
+        <button id="remove-course" class="hover:bg-red-900 text-white">
+          <i class="fas fa-minus"></i>
+        </button>
+        </button>
+        <button id="drop-all-selected" class="hover:bg-yellow-900 text-white">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+      <div class="mobile-course-selection lg:hidden mt-4 p-4 bg-gray-800 rounded">
+        <h3 class="text-lg font-bold mb-2 text-center">Add Course</h3>
+        <div class="mb-2">
+          <input
+            type="text"
+            id="mobile-course-code"
+            placeholder="Enter Course Code"
+            class="w-full p-2 rounded bg-gray-700 text-white border border-gray-600"
+          />
+        </div>
+        <div class="mb-2">
+          <select
+            id="mobile-section-select"
+            class="w-full p-2 rounded bg-gray-700 text-white border border-gray-600"
+          >
+            <option value="">Select Section</option>
+          </select>
+        </div>
+        <div>
+          <button id="mobile-add-course" class="w-full bg-blue-600 hover:bg-blue-700 text-white p-2 rounded">
+            Add Course
+          </button>
+        </div>
+      </div>
+      <div class="courses-box">
+        <h3 class="font-bold text-sm mb-2 text-center">Selected Courses</h3>
+        <div id="selected-courses" class="w-full h-48 bg-gray-700 rounded p-2 text-sm overflow-y-auto"></div>
+      </div>
+      <div class="courses-box info-box">
+        <div id="course-info-card">
+          <p><strong>Course:</strong> <span id="course-name"></span></p>
+          <p><strong>Faculty:</strong> <span id="faculty"></span></p>
+          <p><strong>Section:</strong> <span id="section"></span></p>
+          <p><strong>Time:</strong> <span id="time"></span></p>
+          <p><span id="remaining"></span><span id="total-seat"></span></p>
+        </div>
+      </div>
+    </div>
+    <div id="schedule-container" class="courses-box mt-6">
+      <table class="w-full text-center" id="schedule-table">
+        <thead class="bg-gray-800">
+          <tr>
+            <th class="px-2 py-1 border border-gray-700 border-r-4">Time</th>
+            <th class="px-2 py-1 border border-gray-700">Sun</th>
+            <th class="px-2 py-1 border border-gray-700">Mon</th>
+            <th class="px-2 py-1 border border-gray-700">Tue</th>
+            <th class="px-2 py-1 border border-gray-700">Wed</th>
+            <th class="px-2 py-1 border border-gray-700">Thu</th>
+            <th class="px-2 py-1 border border-gray-700">Fri</th>
+            <th class="px-2 py-1 border border-gray-700">Sat</th>
+          </tr>
+        </thead>
+        <tbody id="schedule" class="divide-y divide-gray-700">
+        </tbody>
+      </table>
+    </div> 
+    <div class="mt-6 flex justify-center gap-4 mobile-buttons">
+      <button id="screenshot-btn"
+        class="flex items-center rounded-full px-6 py-2 text-white transition shadow">
+        <i class="fas fa-camera mr-2"></i> Capture Routine
+        <svg id="screenshot-spinner" class="hidden ml-2 h-5 w-5 text-white animate-spin" xmlns="http://www.w3.org/2000/svg"
+          fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-10" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+        </svg>
+      </button>
+      <button id="copy-routine-btn"></button>
+      <button id="combined-routine-btn"></button>
+      </button>
+    </div>
+
+  </div>
+  <div id="browser-warning-modal" class="browser-warning-modal" style="display: none;">
+    <div class="browser-warning-content">
+      <button class="browser-warning-close" onclick="closeBrowserWarning()">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="browser-warning-title">
+        <i class="fas fa-exclamation-triangle"></i>
+        Open in Browser
+      </div>
+
+      <p class="browser-warning-text">
+        For the best experience, please open this link in your browser (Chrome, Safari, Firefox, etc.) instead of the Facebook/Messenger in-app browser.
+      </p>
+
+      <div class="browser-warning-link" onclick="copyLinkToClipboard()">
+        https://buroutine.web.app/routine/
+        <i class="fas fa-copy" style="margin-left: 0.5rem; opacity: 0.7;"></i>
+      </div>
+
+      <div class="browser-warning-buttons">
+        <button class="browser-warning-btn browser-warning-btn-primary" onclick="copyLinkToClipboard()">
+          <i class="fas fa-copy"></i> Copy Link
+        </button>
+        <button class="browser-warning-btn browser-warning-btn-secondary" onclick="closeBrowserWarning()">
+          Continue Anyway
+        </button>
+      </div>
+    </div>
+  </div>
+  <script src="compressor.js"></script>
+  <script>
+    const detectFacebookBrowser = () => {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      return userAgent.includes('FBAN') || userAgent.includes('FBAV') || userAgent.includes('MessengerForiOS') || userAgent.includes('Messenger');
+    };
+    const copyLinkToClipboard = () => {
+      const link = 'https://routine-id.itzmrz.xyz/';
+      navigator.clipboard.writeText(link).then(() => {
+        showToast('Link copied to clipboard! Paste it in your browser.', 'success');
+      }).catch(() => {
+        const textArea = document.createElement('textarea');
+        textArea.value = link;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        showToast('Link copied to clipboard! Paste it in your browser.', 'success');
+      });
+    };
+    const closeBrowserWarning = () => {
+      const modal = document.getElementById('browser-warning-modal');
+      modal.style.display = 'none';
+      sessionStorage.setItem('browserWarningDismissed', 'true');
+    };
+    const checkAndShowBrowserWarning = () => {
+      const isInFacebookBrowser = detectFacebookBrowser();
+      const wasDismissed = sessionStorage.getItem('browserWarningDismissed');
+
+      if (isInFacebookBrowser && !wasDismissed) {
+        const modal = document.getElementById('browser-warning-modal');
+        modal.style.display = 'flex';
+      }
+    };
+    const ROUTINE_URL = "https://buroutine.web.app/routine/";
+    let allCourses = [];
+    let selectedCourses = [];
+    let dataUrl = "https://usis-cdn.eniamza.com/connect.json";
+    const timeSlots = [
+      { start: '8:00 AM', end: '9:20 AM', startMin: 480, endMin: 560 },
+      { start: '9:30 AM', end: '10:50 AM', startMin: 570, endMin: 650 },
+      { start: '11:00 AM', end: '12:20 PM', startMin: 660, endMin: 740 },
+      { start: '12:30 PM', end: '1:50 PM', startMin: 750, endMin: 830 },
+      { start: '2:00 PM', end: '3:20 PM', startMin: 840, endMin: 920 },
+      { start: '3:30 PM', end: '4:50 PM', startMin: 930, endMin: 1010 },
+      { start: '5:00 PM', end: '6:20 PM', startMin: 1020, endMin: 1100 }
+    ];
+    const availableList = document.getElementById('available-courses');
+    const selectedContainer = document.getElementById('selected-courses');
+    const scheduleBody = document.getElementById('schedule');
+    const toastContainer = document.getElementById('toastContainer');
+    const toggleSwitch = document.getElementById('toggle-switch');
+    const toggleLabel = document.getElementById('toggle-label');
+    const saveCoursesToLocalStorage = () => {
+        try {
+            localStorage.setItem('selectedCourses', JSON.stringify(selectedCourses));
+        } catch (e) {
+            console.error('Failed to save courses to localStorage:', e);
+        }
+    };
+    const loadCoursesFromLocalStorage = () => {
+        try {
+            const savedCourses = localStorage.getItem('selectedCourses');
+            if (savedCourses) {
+                return JSON.parse(savedCourses);
+            }
+        } catch (e) {
+            console.error('Failed to load courses from localStorage:', e);
+        }
+        return [];
+    };
+
+    const debounce = (func, wait) => {
+      let timeout;
+      return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func(...args), wait);
+      };
+    };
+    const convertTime = timeStr => {
+      const [hours, minutes] = timeStr.split(':').map(Number);
+      return hours * 60 + minutes;
+    };
+    const timeOverlap = (a, b) => a.start < b.end && b.start < a.end;
+    const formatTime = timeString => {
+      const [hours, minutes] = timeString.split(':');
+      const hour = parseInt(hours);
+      const suffix = hour >= 12 ? 'PM' : 'AM';
+      const twelveHour = hour % 12 || 12;
+      return `${twelveHour}:${minutes} ${suffix}`;
+    };
+    const fetchCourseData = async () => {
+      try {
+        const response = await fetch(dataUrl, { cache: "force-cache" });
+        allCourses = await response.json();
+        populateAvailableCourses(allCourses);
+      } catch (error) {
+        console.error('Error loading course data:', error);
+      }
+    };
+    const populateAvailableCourses = courses => {
+      availableList.innerHTML = '';
+      courses.sort((a, b) => {
+        const cmp = a.courseCode.localeCompare(b.courseCode);
+        return cmp === 0 ? parseInt(a.sectionName) - parseInt(b.sectionName) : cmp;
+      });
+      const fragment = document.createDocumentFragment();
+      courses.forEach(course => {
+        const option = new Option(
+          `${course.courseCode} - ${course.sectionName} (${course.faculties})`,
+          JSON.stringify(course)
+        );
+        fragment.appendChild(option);
+      });
+      availableList.appendChild(fragment);
+    };
+    const updateCourseInfo = course => {
+      document.getElementById('course-name').textContent = course.courseCode || '-';
+      document.getElementById('faculty').textContent = course.faculties || '-';
+      document.getElementById('section').textContent = course.sectionName || '-';
+      document.getElementById('time').textContent = '-';
+      document.getElementById('remaining').textContent = "-";
+      document.getElementById('total-seat').textContent = "-";
+      if (course.sectionSchedule && course.sectionSchedule.classSchedules?.length) {
+        const classLines = course.sectionSchedule.classSchedules
+          .map(s => `${s.day.toUpperCase()} (${formatTime(s.startTime)}-${formatTime(s.endTime)})`);
+        let output = classLines.join(', ');
+        if (course.labSchedules?.length) {
+          const labLines = course.labSchedules.map(s => `${s.day.toUpperCase()} (${formatTime(s.startTime)}-${formatTime(s.endTime)})`);
+          output += `<br>Lab: ${labLines.join(', ')}`;
+        }
+        document.getElementById('time').innerHTML = output;
+      } else {
+        document.getElementById('time').textContent = '-';
+      }
+      if (toggleSwitch.checked) {
+        const capacity = course.capacity ?? '-';
+        const consumed = course.consumedSeat ?? 0;
+        document.getElementById('remaining').textContent = capacity !== '-' ? capacity - consumed : '-';
+        document.getElementById('total-seat').textContent = capacity;
+      } else {
+        document.getElementById('remaining').textContent = "-";
+        document.getElementById('total-seat').textContent = "-";
+      }
+    };
+    const updateScheduleTable = () => {
+      scheduleBody.innerHTML = '';
+      timeSlots.forEach(slot => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td class="p-3 border-r-4 border-gray-600">${slot.start}<br>${slot.end}</td>
+          ${Array(7).fill().map(() => `<td class="p-3 border border-gray-700"></td>`).join('')}
+        `;
+        scheduleBody.appendChild(row);
+      });
+      const courseIntervals = [];
+      selectedCourses.forEach(course => {
+        const processSchedule = (schedule, type) => {
+          const day = schedule.day.toLowerCase();
+          courseIntervals.push({
+            courseId: course.sectionId,
+            day,
+            start: convertTime(schedule.startTime),
+            end: convertTime(schedule.endTime),
+            type,
+            course
+          });
+        };
+        course.sectionSchedule.classSchedules.forEach(s => processSchedule(s, 'Class'));
+        if (course.labSchedules) course.labSchedules.forEach(s => processSchedule(s, 'Lab'));
+      });
+      const conflicts = new Set();
+      for (let i = 0; i < courseIntervals.length; i++) {
+        for (let j = i + 1; j < courseIntervals.length; j++) {
+          if (courseIntervals[i].day === courseIntervals[j].day && timeOverlap(courseIntervals[i], courseIntervals[j])) {
+            conflicts.add(courseIntervals[i].courseId);
+            conflicts.add(courseIntervals[j].courseId);
+          }
+        }
+      }
+      courseIntervals.forEach(interval => {
+        const dayIndex = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'].indexOf(interval.day);
+        if (dayIndex === -1) return;
+        const affectedSlots = timeSlots
+          .map((slot, index) => ({ index, slot }))
+          .filter(({ slot }) => interval.start < slot.endMin && interval.end > slot.startMin);
+        affectedSlots.forEach(({ index }) => {
+          const cell = scheduleBody.rows[index].cells[dayIndex + 1];
+          const isConflict = conflicts.has(interval.courseId);
+          cell.insertAdjacentHTML('beforeend', `
+            <div class="p-2 rounded text-sm mb-1 ${isConflict ? 'bg-red-900' : interval.type === 'Lab' ? 'bg-purple-800' : 'bg-gray-700'}">
+              <div class="font-semibold">${interval.course.courseCode} [${interval.course.sectionName}]</div>
+              <div class="text-gray-300">${interval.type === 'Lab' ? interval.course.labRoomName : interval.course.roomName}</div>
+              ${isConflict ? '<div class="text-red-300 mt-1">Conflict</div>' : ''}
+            </div>
+          `);
+        });
+      });
+    };
+    const updateSelectedCourses = () => {
+      selectedCourses = selectedCourses.map(sel => {
+        const updated = allCourses.find(c => c.courseCode === sel.courseCode && c.sectionName === sel.sectionName);
+        return updated || sel;
+      });
+      updateScheduleTable();
+      const highlighted = selectedContainer.querySelector('.active-selected');
+      if (highlighted) {
+        const index = Array.from(selectedContainer.children).indexOf(highlighted);
+        if (index !== -1) updateCourseInfo(selectedCourses[index]);
+      }
+    };
+    const removeCourse = (course, courseEntryElement) => {
+      const index = selectedCourses.findIndex(c => c.courseCode === course.courseCode && c.sectionName === course.sectionName);
+      if (index !== -1) {
+        selectedCourses.splice(index, 1);
+        courseEntryElement.remove();
+        const option = new Option(`${course.courseCode} - ${course.sectionName} (${course.faculties})`, JSON.stringify(course));
+        availableList.add(option);
+        updateScheduleTable();
+        saveCoursesToLocalStorage();
+      }
+    };  document.addEventListener('DOMContentLoaded', async () => {
+
+      await fetchCourseData();
+      const savedCourses = loadCoursesFromLocalStorage();
+      if (savedCourses.length > 0) {
+          savedCourses.forEach(savedCourse => {
+              const matchingCourse = allCourses.find(c =>
+                  c.courseCode === savedCourse.courseCode &&
+                  c.sectionName === savedCourse.sectionName
+              );
+
+              if (matchingCourse) {
+                  selectedCourses.push(matchingCourse);
+                  const courseEntry = document.createElement('div');
+                  courseEntry.className = 'selected-course-item';
+                  courseEntry.innerHTML = `
+                      <span>${matchingCourse.courseCode} - ${matchingCourse.sectionName}</span>
+                      <button class="remove-btn text-red-400 hover:text-red-600">
+                          <i class="fas fa-times"></i>
+                      </button>
+                  `;
+
+                  courseEntry.querySelector('.remove-btn').addEventListener('click', (e) => {
+                      e.stopPropagation();
+                      removeCourse(matchingCourse, courseEntry);
+                  });
+
+                  selectedContainer.appendChild(courseEntry);
+                  const option = availableList.querySelector(`option[value='${JSON.stringify(matchingCourse)}']`);
+                  if (option) {
+                      option.remove();
+                  }
+              }
+          });
+
+          updateScheduleTable();
+          showToast('Loaded your previous courses!', 'success');
+      }
+
+      updateScheduleTable();
+      const tagline = document.getElementById('tagline');
+      tagline.classList.add('animate-[sparkEffect_2s_ease-out]');
+      setTimeout(() => tagline.classList.remove('animate-[sparkEffect_2s_ease-out]'), 2500);
+    });
+    if (toggleSwitch) {
+      toggleSwitch.addEventListener('change', async () => {
+        if (toggleSwitch.checked) {
+          dataUrl = "https://usis-cdn.eniamza.com/connect.json";
+          toggleLabel.textContent = "Live";
+          liveIndicator.innerHTML = '<div class="w-2 h-2 bg-green-500 rounded-full animate-ping"></div>';
+        } else {
+          dataUrl = "spring-usisdump.json";
+          toggleLabel.textContent = "Archive";
+          liveIndicator.innerHTML = '<div class="w-2 h-2 bg-red-500 rounded-full"></div>';
+        }
+        await fetchCourseData();
+        updateSelectedCourses();
+      });
+    }
+    selectedContainer.addEventListener('click', e => {
+      const target = e.target;
+      if (target.closest('.remove-btn')) return;
+      const entry = target.closest('.selected-course-item');
+      if (!entry) return;
+      Array.from(selectedContainer.children).forEach(child => child.classList.remove('active-selected'));
+      entry.classList.add('active-selected');
+      const index = Array.from(selectedContainer.children).indexOf(entry);
+      if (index !== -1) updateCourseInfo(selectedCourses[index]);
+    });
+    availableList.addEventListener('change', e => {
+      const selectedOption = e.target.selectedOptions[0];
+      if (selectedOption) {
+        const course = JSON.parse(selectedOption.value);
+        updateCourseInfo(course);
+      }
+    });
+    document.getElementById('add-course').addEventListener('click', () => {
+      const selectedOption = availableList.selectedOptions[0];
+      if (!selectedOption) return;
+      const newCourse = JSON.parse(selectedOption.value);
+      if (selectedCourses.some(c => c.courseCode === newCourse.courseCode)) {
+        showToast("You cannot add more than one section of the same course. Please drop the other section first!", "warning");
+        return;
+      }
+      selectedCourses.push(newCourse);
+      const courseEntry = document.createElement('div');
+      courseEntry.className = 'selected-course-item';
+      courseEntry.innerHTML = `
+        <span>${newCourse.courseCode} - ${newCourse.sectionName}</span>
+        <button class="remove-btn text-red-400 hover:text-red-600"><i class="fas fa-times"></i></button>
+      `;
+      courseEntry.querySelector('.remove-btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        removeCourse(newCourse, courseEntry);
+      });
+      selectedContainer.appendChild(courseEntry);
+      availableList.remove(selectedOption.index);
+      updateScheduleTable();
+      saveCoursesToLocalStorage();
+    });
+    document.getElementById('remove-course').addEventListener('click', () => {
+      const activeEntry = selectedContainer.querySelector('.active-selected');
+      if (activeEntry) {
+        const index = Array.from(selectedContainer.children).indexOf(activeEntry);
+        if (index !== -1) {
+          const removedCourse = selectedCourses.splice(index, 1)[0];
+          activeEntry.remove();
+          const option = new Option(`${removedCourse.courseCode} - ${removedCourse.sectionName} (${removedCourse.faculties})`, JSON.stringify(removedCourse));
+          availableList.add(option);
+          updateScheduleTable();
+          saveCoursesToLocalStorage(); 
+        }
+      }
+    });
+    document.getElementById('drop-all-selected').addEventListener('click', () => {
+      selectedCourses.forEach(course => {
+        const option = new Option(`${course.courseCode} - ${course.sectionName} (${course.faculties})`, JSON.stringify(course));
+        availableList.add(option);
+      });
+      selectedCourses = [];
+      selectedContainer.innerHTML = '';
+      updateScheduleTable();
+      saveCoursesToLocalStorage(); 
+    });
+    document.getElementById('search-input').addEventListener('input', debounce(e => {
+      const term = e.target.value.toLowerCase();
+      const filtered = allCourses.filter(course =>
+        course.courseCode.toLowerCase().includes(term) ||
+        course.sectionName.toLowerCase().includes(term) ||
+        course.faculties.toLowerCase().includes(term)
+      );
+      populateAvailableCourses(filtered);
+    }, 300));
+    document.getElementById('copy-routine-main').addEventListener('click', () => {
+      if (selectedCourses.length === 0) {
+        showToast('No courses selected. Please add courses before copying your Routine.', 'warning');
+        return;
+      }
+      const sectionIds = selectedCourses.map(course => course.sectionId);
+      const routineId = compressor.compressForCopy(sectionIds);
+      navigator.clipboard.writeText(routineId);
+      showToast('Routine copied to clipboard!');
+    });
+    document.getElementById('screenshot-btn').addEventListener('click', async () => {
+      const screenshotBtn = document.getElementById('screenshot-btn');
+      const spinner = document.getElementById('screenshot-spinner');
+      const routineElement = document.getElementById('schedule-container');
+
+      try {
+        screenshotBtn.disabled = true;
+        spinner.classList.remove('hidden');
+        await new Promise(resolve => setTimeout(resolve, 100));
+        const originalScroll = window.scrollY;
+        const originalStyles = {
+          width: routineElement.style.width,
+          height: routineElement.style.height,
+          overflow: routineElement.style.overflow,
+          position: routineElement.style.position,
+          background: routineElement.style.background
+        };
+        const headingElements = routineElement.querySelectorAll('h2');
+        const headingStyles = [];
+        headingElements.forEach((heading, i) => {
+          headingStyles[i] = { color: heading.style.color };
+        });
+        routineElement.classList.add('screenshot-preparation');
+        routineElement.style.width = '1200px';
+        routineElement.style.height = 'auto';
+        routineElement.style.overflow = 'visible';
+        routineElement.style.position = 'relative';
+        routineElement.style.background = '#1f2937';
+        headingElements.forEach(heading => {
+          heading.style.color = '#f9fafb';
+        });
+        const cells = routineElement.querySelectorAll('td, th');
+        const cellStyles = [];
+        cells.forEach((cell, i) => {
+          cellStyles[i] = {
+            background: cell.style.background,
+            width: cell.style.width,
+            padding: cell.style.padding,
+            color: cell.style.color
+          };
+          cell.style.background = '#2d3748';
+          cell.style.width = '150px';
+          cell.style.padding = '0.75rem';
+          cell.style.color = '#f9fafb';
+        });
+        const canvas = await html2canvas(routineElement, {
+          backgroundColor: '#1f2937',
+          scale: window.devicePixelRatio || 2,
+          useCORS: true,
+          allowTaint: false,
+          scrollY: -window.scrollY,
+          onclone: (clonedDoc) => {
+            const clonedElement = clonedDoc.getElementById('schedule-container');
+            clonedElement.style.transform = 'none';
+            clonedElement.style.boxShadow = 'none';
+            clonedElement.classList.add('screenshot-preparation');
+          }
+        });
+        canvas.style.width = '100%';
+        canvas.style.height = 'auto';
+        Object.entries(originalStyles).forEach(([prop, value]) => {
+          routineElement.style[prop] = value || '';
+        });
+        routineElement.classList.remove('screenshot-preparation');
+        cells.forEach((cell, i) => {
+          Object.entries(cellStyles[i]).forEach(([prop, value]) => {
+            cell.style[prop] = value || '';
+          });
+        });
+        headingElements.forEach((heading, i) => {
+          heading.style.color = headingStyles[i].color;
+        });
+        window.scrollTo(0, originalScroll);
+
+        const imgData = canvas.toDataURL('image/png', 1.0);
+        const link = document.createElement('a');
+        link.download = `routine.png`;
+        link.href = imgData;
+        link.click();
+
+        showToast('Screenshot saved successfully!', 'success');
+      } catch (error) {
+        console.error('Screenshot error:', error);
+        showToast('Failed to capture screenshot. Please try again.', 'error');
+      } finally {
+        screenshotBtn.disabled = false;
+        spinner.classList.add('hidden');
+      }
+    });
+    document.getElementById('combined-routine-btn').addEventListener('click', () => {
+      window.location.href = ROUTINE_URL;
+    });
+    document.getElementById('copy-routine-btn').addEventListener('click', () => {
+      if (selectedCourses.length === 0) {
+        showToast('No courses selected. Please add courses before copying your Routine.', 'warning');
+        return;
+      }
+      const sectionIds = selectedCourses.map(course => course.sectionId);
+      const routineId = compressor.compressForCopy(sectionIds);
+      navigator.clipboard.writeText(routineId);
+      showToast('Routine copied to clipboard!');
+    });
+    const showToast = (message, type = "info") => {
+      if (!toastContainer) return;
+      const bgClasses = {
+        success: "bg-green-600",
+        warning: "bg-yellow-600",
+        error: "bg-red-600",
+        info: "bg-blue-600"
+      };
+      const toast = document.createElement('div');
+      toast.className = `${bgClasses[type] || bgClasses.info} text-white px-4 py-2 rounded shadow transition-opacity duration-300 opacity-100`;
+      toast.textContent = message;
+      toastContainer.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.add("opacity-0");
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    };
+
+    document.getElementById('mobile-course-code').addEventListener('input', debounce(function(e) {
+      let codeQuery = e.target.value.toLowerCase().trim();
+      let mobileSectionSelect = document.getElementById('mobile-section-select');
+      mobileSectionSelect.innerHTML = '<option value="">Select Section</option>';
+
+      let filteredCourses = allCourses.filter(course =>
+        course.courseCode.toLowerCase().includes(codeQuery)
+      );
+
+      filteredCourses.forEach(course => {
+        const option = document.createElement('option');
+        option.value = JSON.stringify(course);
+        option.text = `${course.courseCode} - ${course.sectionName} (${course.faculties})`;
+        mobileSectionSelect.appendChild(option);
+      });
+    }, 300));
+
+    document.getElementById('mobile-add-course').addEventListener('click', () => {
+      let mobileSectionSelect = document.getElementById('mobile-section-select');
+      let selectedOption = mobileSectionSelect.selectedOptions[0];
+      if (!selectedOption || !selectedOption.value) {
+        showToast('Please select a valid course section!', 'warning');
+        return;
+      }
+      let newCourse = JSON.parse(selectedOption.value);
+
+      if (selectedCourses.some(c => c.courseCode === newCourse.courseCode)) {
+        showToast("You cannot add more than one section of the same course. Please drop the other section first!", "warning");
+        return;
+      }
+
+      selectedCourses.push(newCourse);
+      const courseEntry = document.createElement('div');
+      courseEntry.className = 'selected-course-item';
+      courseEntry.innerHTML = `
+        <span>${newCourse.courseCode} - ${newCourse.sectionName}</span>
+        <button class="remove-btn text-red-400 hover:text-red-600"><i class="fas fa-times"></i></button>
+      `;
+      courseEntry.querySelector('.remove-btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        removeCourse(newCourse, courseEntry);
+      });
+      selectedContainer.appendChild(courseEntry);
+      const availableList = document.getElementById('available-courses');
+      for (let i = 0; i < availableList.options.length; i++) {
+        const option = availableList.options[i];
+        const courseObj = JSON.parse(option.value);
+        if (courseObj.courseCode === newCourse.courseCode && courseObj.sectionName === newCourse.sectionName) {
+          availableList.remove(i);
+          break;
+        }
+      }
+      document.getElementById('mobile-course-code').value = '';
+      mobileSectionSelect.innerHTML = '<option value="">Select Section</option>';
+
+      updateScheduleTable();
+      saveCoursesToLocalStorage();
+    });
+  </script>
+
+  <script>
+  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(function(registration) {
+          console.log('ServiceWorker registration successful:', registration);
+        }, function(err) {
+          console.log('ServiceWorker registration failed:', err);
+        });
+    });
+  }
+</script>
+
+</body>
+</html>
